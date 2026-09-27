@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Skill | Campus Skill Exchange</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6fb;
+            color: #1f2937;
+        }
+
+        .navbar {
+            background: #111827;
+            color: white;
+            padding: 20px 55px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .navbar span {
+            color: #7c83ff;
+        }
+
+        .container {
+            width: 600px;
+            margin: 60px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 22px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #4f46e5, #7c3aed);
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #6366f1;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        Campus <span>Skill Exchange</span>
+    </div>
+
+    <div class="container">
+
+        <h1>Share Your Skill</h1>
+
+        <p class="subtitle">
+            Add a skill you know and share your knowledge with other students.
+        </p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label>Skill Name</label>
+            <input type="text" name="skill_name"
+                   placeholder="Example: Python Programming"
+                   required>
+
+            <label>Category</label>
+            <select name="category" required>
+                <option value="">Select a category</option>
+                <option value="Programming">Programming</option>
+                <option value="Design">Design</option>
+                <option value="Music">Music</option>
+                <option value="Sports">Sports</option>
+                <option value="Academic">Academic</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label>Description</label>
+            <textarea name="description"
+                      placeholder="Briefly describe what you can teach..."
+                      required></textarea>
+
+            <button type="submit">+ Add My Skill</button>
+        </form>
+
+        <a class="back" href="{% url 'home' %}">← Back to Dashboard</a>
+
+    </div>
+
+</body>
+</html>

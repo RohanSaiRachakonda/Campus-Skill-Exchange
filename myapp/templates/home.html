@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Campus Skill Exchange</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6fb;
+            color: #1f2937;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: #111827;
+            color: white;
+            padding: 18px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #818cf8;
+        }
+
+        .user {
+            background: #1f2937;
+            padding: 9px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            padding: 65px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 46px;
+            margin: 0 0 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 650px;
+            margin: auto;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .hero-button {
+            display: inline-block;
+            margin-top: 28px;
+            padding: 13px 28px;
+            background: white;
+            color: #4f46e5;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .hero-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* MAIN */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* STATS */
+        .stats {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat {
+            flex: 1;
+            background: white;
+            padding: 25px;
+            border-radius: 14px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        .stat h2 {
+            color: #4f46e5;
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .stat p {
+            color: #6b7280;
+            margin-bottom: 0;
+        }
+
+        /* SECTION TITLE */
+        .section-title {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .section-title h2 {
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: #6b7280;
+        }
+
+        /* CARDS */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            transition: 0.25s;
+            border: 1px solid #eef0f5;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        }
+
+        .icon {
+            width: 55px;
+            height: 55px;
+            background: #eef2ff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            font-size: 21px;
+        }
+
+        .card p {
+            color: #6b7280;
+            line-height: 1.6;
+            min-height: 75px;
+        }
+
+        .button {
+            display: inline-block;
+            background: #4f46e5;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 7px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background: #4338ca;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 35px;
+            margin-top: 50px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        /* MOBILE */
+        @media (max-width: 800px) {
+
+            .navbar {
+                padding: 18px 25px;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .stats {
+                flex-direction: column;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+
+    <div class="logo">
+        Campus <span>Skill Exchange</span>
+    </div>
+
+    <div class="user">
+        Welcome, {{ request.user.username }}
+
+        <a href="{% url 'logout' %}"
+           style="color: white; text-decoration: none; margin-left: 20px;">
+            Logout
+        </a>
+    </div>
+
+</div>
+
+    <!-- HERO -->
+    <div class="hero">
+
+        <h1>Share Skills. Learn Together.</h1>
+
+        <p>
+            A student-powered platform where you can discover
+            skills, share your knowledge, and connect with
+            students across your campus.
+        </p>
+
+        <a href="{% url 'explore_skills' %}" class="button">
+    Explore Skills
+</a>
+    </div>
+
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+
+
+        <!-- STATS -->
+        <div class="stats">
+
+            <div class="stat">
+                <h2>50+</h2>
+                <p>Students</p>
+            </div>
+
+            <div class="stat">
+                <h2>25+</h2>
+                <p>Skills Shared</p>
+            </div>
+
+            <div class="stat">
+                <h2>10+</h2>
+                <p>Skill Categories</p>
+            </div>
+
+        </div>
+
+
+        <!-- SECTION -->
+        <div class="section-title">
+
+            <h2>What would you like to do?</h2>
+
+            <p>
+                Choose an option and start exploring the campus skill community.
+            </p>
+
+        </div>
+
+
+        <!-- CARDS -->
+        <div class="cards">
+
+
+            <!-- SHARE -->
+            <div class="card">
+
+                <div class="icon">
+                    💡
+                </div>
+
+                <h3>Share a Skill</h3>
+
+                <p>
+                    Have a skill you're good at?
+                    Share your knowledge and help another student learn.
+                </p>
+
+                <a href="{% url 'add_skill' %}" class="button">
+    Add My Skill
+</a>
+            </div>
+
+
+            <!-- LEARN -->
+            <div class="card">
+
+                <div class="icon">
+                    🎓
+                </div>
+
+                <h3>Learn a Skill</h3>
+
+                <p>
+                    Discover skills offered by other students
+                    and find someone who can help you learn.
+                </p>
+
+                <a href="{% url 'explore_skills' %}" class="button">
+    Explore Skills
+</a>
+            </div>
+
+
+            <!-- PROFILE -->
+            <div class="card">
+
+                <div class="icon">
+                    👤
+                </div>
+
+                <h3>My Profile</h3>
+
+                <p>
+                    Manage your profile and keep track of
+                    the skills you offer to the campus community.
+                </p>
+
+                <a href="{% url 'profile' %}" class="button">
+    View Profile
+</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        © 2026 Campus Skill Exchange · Built for the campus community
+
+    </footer>
+
+</body>
+</html>

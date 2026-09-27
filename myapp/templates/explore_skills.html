@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Explore Skills | Campus Skill Exchange</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f5f6ff;
+        margin: 0;
+        color: #1f2937;
+    }
+
+    .header {
+        background: #111827;
+        color: white;
+        padding: 25px 50px;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .container {
+        width: 85%;
+        margin: 45px auto;
+    }
+
+    h1 {
+        text-align: center;
+        color: #4f46e5;
+        font-size: 40px;
+        margin-bottom: 10px;
+    }
+
+    .subtitle {
+        text-align: center;
+        color: #6b7280;
+        margin-bottom: 40px;
+        font-size: 17px;
+    }
+
+    .skills {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+
+    .skill {
+        background: white;
+        padding: 28px;
+        border-radius: 16px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        border: 1px solid #eeeeff;
+        transition: 0.2s;
+    }
+
+    .skill:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .skill h2 {
+        color: #4f46e5;
+        margin-top: 0;
+        text-transform: capitalize;
+    }
+
+    .category {
+        display: inline-block;
+        color: #4f46e5;
+        background: #eef2ff;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .back {
+        display: block;
+        width: fit-content;
+        margin: 40px auto 0;
+        color: #4f46e5;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .back:hover {
+        text-decoration: underline;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    Campus Skill Exchange
+</div>
+
+<div class="container">
+
+    <h1>Explore Skills</h1>
+
+    <p class="subtitle">
+        Discover skills shared by students across the campus.
+    </p>
+
+    <div class="skills">
+
+        {% for skill in skills %}
+        <div class="skill">
+            <h2>{{ skill.skill_name }}</h2>
+
+            <p>{{ skill.description }}</p>
+
+            <p class="category">
+                {{ skill.category }}
+            </p>
+
+            <p>
+                Shared by: {{ skill.user.username }}
+            </p>
+        </div>
+
+        {% empty %}
+        <div class="skill">
+            <h2>No skills available</h2>
+            <p>Be the first student to share a skill!</p>
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <a class="back" href="{% url 'home' %}">
+        ← Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+</html>
